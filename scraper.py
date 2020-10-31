@@ -8,11 +8,21 @@ def scraper(url, resp):
 
 def extract_next_links(url, resp):
     # Implementation requred.
-    if (resp.status >= 600 and resp.status <=606):
-        print(resp.error)
-    else if (resp.status >=400 and resp.status <=599):
-        print(resp.raw_response)
-    else if (resp.status >=200 and resp.status <=599)
+    # if (resp.status >= 600 and resp.status <=606):
+    #     print(resp.error)
+    # else if (resp.status >=400 and resp.status <=599):
+    #     print(resp.raw_response)
+    # else if (resp.status >=200 and resp.status <=599):
+    #     print(resp.error)
+    print("*"*50)
+    print(resp.url)
+    print("*"*25)
+    print (resp.status)
+    print("*"*25)
+    print(resp.error)
+    print("*"*25)
+    print(len(resp.raw_response)
+    print("*"*50)
 
     return list()
 
