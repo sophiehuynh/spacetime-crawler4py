@@ -8,10 +8,16 @@ def scraper(url, resp):
 
 def extract_next_links(url, resp):
     # Implementation requred.
+    if (resp.status >= 600 and resp.status <=606):
+        print(resp.error)
+    else if (resp.status >=400 and resp.status <=599):
+        print(resp.raw_response)
+    else if (resp.status >=200 and resp.status <=599)
+
     return list()
 
 def is_valid(url):
-    print("Validating...")
+    print("Validating..")
     try:
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
