@@ -15,15 +15,15 @@ def extract_next_links(url, resp):
     # else if (resp.status >=200 and resp.status <=599):
     #     print(resp.error)
     print('*'*50)
-    print(resp.url)
+    print("URL: ", resp.url)
     print("*"*25)
-    print (resp.status)
+    print("Status: ",resp.status)
     print("*"*25)
-    print(resp.error)
+    print("Error: ",resp.error)
     print("*"*25)
-    print(len(resp.raw_response))
+    print((resp.raw_response.content))
     print("*"*50)
-
+    raise TypeError
     return list()
 
 def is_valid(url):
