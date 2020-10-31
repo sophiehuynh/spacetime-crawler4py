@@ -2,7 +2,7 @@ import re
 from urllib.parse import urlparse
 
 def scraper(url, resp):
-    print("HI THERE",url)
+    print("THE URL: ",url, "THE END")
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
