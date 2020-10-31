@@ -1,5 +1,7 @@
 import re
 from urllib.parse import urlparse
+from bs4 import BeautifulSoup
+
 
 def scraper(url, resp):
     print("THE URL: ",url, "THE END")
@@ -21,8 +23,15 @@ def extract_next_links(url, resp):
     print("*"*25)
     print(resp.error)
     print("*"*25)
-    print(len(resp.raw_response))
+    soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
+    print(soup.prettify())
     print("*"*50)
+    #parse through the resp.raw_response.content and find http links to crawl
+    #get the http link and add to link -- PRINT IT OUT FOR NOW
+    #CHECKS
+        #if link == url parameter
+    #TO CHECK FOR EACH LINKE???: if the link is valid and is not leading to a trap, a similar page,
+    # a dead url, a very large file with low info value...?
 
     return list()
 
