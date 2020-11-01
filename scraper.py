@@ -1,5 +1,6 @@
 import re
 from urllib.parse import urlparse
+from bs4 import BeautifulSoup
 
 def scraper(url, resp):
     print("THE URL: ",url, "THE END")
@@ -21,7 +22,8 @@ def extract_next_links(url, resp):
     print("*"*25)
     print("Error: ",resp.error)
     print("*"*25)
-    print((resp.raw_response.content))
+    soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
+    print((soup.prettify()))
     print("*"*50)
     raise TypeError
     return list()
