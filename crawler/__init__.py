@@ -9,18 +9,23 @@ class Crawler(object):
         self.frontier = frontier_factory(config, restart)
         self.workers = list()
         self.worker_factory = worker_factory
+        ### IMPLEMENTED
+        
 
     def start_async(self):
         self.workers = [
             self.worker_factory(worker_id, self.config, self.frontier)
             for worker_id in range(self.config.threads_count)]
         for worker in self.workers:
+            print("WORKER ASYNC START")
             worker.start()
 
     def start(self):
         self.start_async()
+        print("WORKER START")
         self.join()
 
     def join(self):
         for worker in self.workers:
+            print("WORKER JOIN")
             worker.join()
