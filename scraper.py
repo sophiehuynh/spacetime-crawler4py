@@ -26,6 +26,15 @@ def extract_next_links(url, resp):
     soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
     print(soup.prettify())
     print("*"*50)
+    domain1 = ".ics.uci.edu/"
+    for link in soup.find_all('a'):
+        currlink = link.get('href')
+        print(currlink)
+        if (".ics.uci.edu/" in currlink):
+            print("******LINK IS SUBDOMAIN OF .ICS.UCI.EDU******")
+            #add to a list of subdomains for ics.uci url and increment count for that subdomain
+        #use soup.get_text() to extract all text from a page
+   
     #parse through the resp.raw_response.content and find http links to crawl
     #get the http link and add to link -- PRINT IT OUT FOR NOW
     #CHECKS
