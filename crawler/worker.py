@@ -12,6 +12,8 @@ class Worker(Thread):
         self.config = config
         self.frontier = frontier
         super().__init__(daemon=True)
+        #IMPLEMENT
+        self.visitedURLs = set()
         
     def run(self):
         while True:
@@ -24,7 +26,9 @@ class Worker(Thread):
                 f"Downloaded {tbd_url}, status <{resp.status}>, "
                 f"using cache {self.config.cache_server}.")
             scraped_urls = scraper(tbd_url, resp)
-            for scraped_url in scraped_urls:
-                self.frontier.add_url(scraped_url)
+            #IMPLEMENT
+            for scraped_url in scraped_urls:            
+                if (scraped_url not in visitedURLs):
+                    self.frontier.add_url(scraped_url)
             self.frontier.mark_url_complete(tbd_url)
             time.sleep(self.config.time_delay)

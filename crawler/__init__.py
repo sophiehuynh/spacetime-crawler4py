@@ -23,6 +23,8 @@ class Crawler(object):
     def start(self):
         self.start_async()
         print("WORKER START")
+        for worker in self.workers:
+            print(len(self.visistedURLs))
         self.join()
 
     def join(self):
