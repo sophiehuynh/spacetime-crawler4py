@@ -11,16 +11,18 @@ def scraper(url, resp):
 def extract_next_links(url, resp):
     # Implementation requred.
     foundLinks = list()
-    if (resp.status >= 600 and resp.status <=606):
-        print(resp.error)
-    if (resp.status >=200 and resp.status <=599):
-        if (resp.status >=400 and resp.status <=599):
-            print("SKIPPED")
-        else:
-            print("GOOD LINK")
-            soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
-            for link in soup.find_all('a'):
-                foundLinks.append(link.get('href'))
+    if (".ics.uci.edu" in url) or (".cs.uci.edu" in url) or (".informatics.uci.edu" in url) or (".stat.uci.edu" in url) or ("today.uci.edu/department/information_computer_sciences" in url):
+        print("----------------------------------------------------",url)
+        if (resp.status >= 600 and resp.status <=606):
+            print("ERROR ERROR ERROR ERROR ERROR:                 ",resp.error)
+        if (resp.status >=200 and resp.status <=599):
+            if (resp.status >=400 and resp.status <=599):
+                print("SKIPPED")
+            else:
+                print("GOOD LINK")
+                soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
+                for link in soup.find_all('a'):
+                    foundLinks.append(link.get('href'))
     return foundLinks
             
     #     print(currlink)

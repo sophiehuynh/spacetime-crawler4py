@@ -27,8 +27,11 @@ class Worker(Thread):
                 f"using cache {self.config.cache_server}.")
             scraped_urls = scraper(tbd_url, resp)
             #IMPLEMENT
-            for scraped_url in scraped_urls:            
-                if (scraped_url not in visitedURLs):
+            print("THE SIZE OF THE FRONTIERRLS IS NOW: ",len(self.frontier.to_be_downloaded))
+            print("THE SIZE OF THE VISTED URLS IS NOW: ",len(self.visitedURLs))
+            for scraped_url in scraped_urls:           
+                if (scraped_url not in self.visitedURLs):
+                    self.visitedURLs.add(scraped_url)
                     self.frontier.add_url(scraped_url)
             self.frontier.mark_url_complete(tbd_url)
             time.sleep(self.config.time_delay)

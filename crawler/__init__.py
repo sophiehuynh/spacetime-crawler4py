@@ -17,17 +17,12 @@ class Crawler(object):
             self.worker_factory(worker_id, self.config, self.frontier)
             for worker_id in range(self.config.threads_count)]
         for worker in self.workers:
-            print("WORKER ASYNC START")
             worker.start()
 
     def start(self):
         self.start_async()
-        print("WORKER START")
-        for worker in self.workers:
-            print(len(self.visistedURLs))
         self.join()
 
     def join(self):
         for worker in self.workers:
-            print("WORKER JOIN")
             worker.join()
