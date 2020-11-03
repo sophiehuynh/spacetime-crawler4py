@@ -10,28 +10,22 @@ def scraper(url, resp):
 
 def extract_next_links(url, resp):
     # Implementation requred.
-    # if (resp.status >= 600 and resp.status <=606):
-    #     print(resp.error)
-    # else if (resp.status >=400 and resp.status <=599):
-    #     print(resp.raw_response)
-    # else if (resp.status >=200 and resp.status <=599):
-    #     print(resp.error)
-    print('*'*50)
-    print("URL: ", resp.url)
-    print("*"*25)
-    print("Status: ",resp.status)
-    print("*"*25)
-    print("Error: ",resp.error)
-    print("*"*25)
-    soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
-    print(soup.prettify())
-    print("*"*50)
-    domain1 = ".ics.uci.edu/"
-    for link in soup.find_all('a'):
-        currlink = link.get('href')
-        print(currlink)
-        if (".ics.uci.edu/" in currlink):
-            print("******LINK IS SUBDOMAIN OF .ICS.UCI.EDU******")
+    foundLinks = list()
+    if (resp.status >= 600 and resp.status <=606):
+        print(resp.error)
+    if (resp.status >=200 and resp.status <=599):
+        if (resp.status >=400 and resp.status <=599):
+            print("SKIPPED")
+        else:
+            print("GOOD LINK")
+            soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
+            for link in soup.find_all('a'):
+                foundLinks.append(link.get('href'))
+    return foundLinks
+            
+    #     print(currlink)
+    #     if (".ics.uci.edu/" in currlink):
+    #         print("******LINK IS SUBDOMAIN OF .ICS.UCI.EDU******")
             #add to a list of subdomains for ics.uci url and increment count for that subdomain
         #use soup.get_text() to extract all text from a page
    
@@ -41,11 +35,8 @@ def extract_next_links(url, resp):
         #if link == url parameter
     #TO CHECK FOR EACH LINKE???: if the link is valid and is not leading to a trap, a similar page,
     # a dead url, a very large file with low info value...?
-    raise TypeError
-    return list()
 
 def is_valid(url):
-    print("Validating..")
     try:
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
