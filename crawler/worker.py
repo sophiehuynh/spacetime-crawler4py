@@ -12,11 +12,11 @@ class Worker(Thread):
         self.config = config
         self.frontier = frontier
         super().__init__(daemon=True)
-        #IMPLEMENT
-        self.visitedURLs = set()            #all urls scraped (discard fragment)
-        self.longestPage = (None,0)         #(url, maxwordcount)
+        #OUR INSTANCE VARIABLES
+        self.discoveredURLs = set()         #all urls scraped (discard fragment) (unique)
+        self.longestPage = [None,0]         #(url, maxwordcount)
         self.icsSubDomains = dict()         #(subdomain:count)
-        self.mostCommonWords = dict()       #(word:frequency)           
+        self.mostCommonWords = dict()       #(word:frequency)         
         
     def run(self):
         count = 0
@@ -29,23 +29,22 @@ class Worker(Thread):
             self.logger.info(
                 f"Downloaded {tbd_url}, status <{resp.status}>, "
                 f"using cache {self.config.cache_server}.")
-            scraped_urls = scraper(tbd_url, resp,self.mostCommonWords,self.icsSubDomains)
+            scraped_urls = scraper(tbd_url, resp,self.mostCommonWords,self.icsSubDomains,self.longestPage)
             ###CHECKING IF INSTANCE VARIABLES WORKING
-            # print("-----***********-",self.mostCommonWords)
-            # raise TypeError
+
             #IMPLEMENT
             print("THE SIZE OF THE FRONTIERRLS IS NOW: ",len(self.frontier.to_be_downloaded))
-            print("THE SIZE OF THE VISTED URLS IS NOW: ",len(self.visitedURLs))
+            print("THE SIZE OF THE DISCOVERED URLS IS NOW: ",len(self.discoveredURLs))
             for scraped_url in scraped_urls:                                                    #for each scraped url, visit only if unvisited before
-                if (scraped_url not in self.visitedURLs):                                       #and add to visitedurl set and frontier
-                    self.visitedURLs.add(scraped_url)
+                if (scraped_url not in self.discoveredURLs):                                       #and add to visitedurl set and frontier
+                    self.discoveredURLs.add(scraped_url)
                     self.frontier.add_url(scraped_url)
             self.frontier.mark_url_complete(tbd_url)
             time.sleep(self.config.time_delay)
             count += 1
-            print("\n\nCOUNT INCREMENTED\n\n")
+            print("\n\n",count,"\n\n")
         #once out of while loop, that means crawler has stopped and now 
-            if count == 1000:
+            if count == 100:
                 print()
                 break
             

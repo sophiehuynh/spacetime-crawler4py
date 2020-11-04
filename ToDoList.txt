@@ -17,13 +17,15 @@ TO DO
 **** Keep track of necessary variables by using parameters and at the very end then write to a single file (iterate through each worker) ****
 
     VARIABLES IN WORKER (for each worker)
-        - mostWords(url,wordCount)
-        - number of unique pages
+    DONE + mostWords[url,wordCount]
+    DONE + number of unique pages
     DONE + 50 most common words in the entire set of pages crawled
     DONE + number of subdomains in ics.uci.edu Domain
 -------------------------------------------------------------------
 
-- figure out how to keep track of variables
+-links inside the text too
+
+DONE + figure out how to keep track of variables
 
 - avoid traps
     - figure out how to not go into those gajillion comments and replies to comments on evoke.ics.uci.edu
@@ -34,12 +36,12 @@ TO DO
 
 - add find for urls in other places other than anchor tag (dont look at src attributes though)
 
-- redirecting pages that actually refer to the same page - get that full link first
+- redirecting pages that actually refer to the same page - get that full link first???
     import urllib2
     response = urllib2.urlopen(HeadRequest("http://google.com/index.html"))
     response.geturl()
 
-- figure how to get out of the calender
+- figure how to get out of the calendar
 
 - add domain and scheme if only given path??
     o = urlparse("")

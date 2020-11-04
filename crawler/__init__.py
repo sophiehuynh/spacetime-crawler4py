@@ -23,16 +23,28 @@ class Crawler(object):
         self.start_async()
         self.join()
 
+        #     REPORT FINDINGS WRITTEN INTO FILE    
+
         #TOP 50 Common Words Frequency -----------------------------------------------------------
         f = open("top50.txt", "w")
         f.write("Top 50 Words and their frequency\n")
         f.write("-"*80)
         f.write("\n")
-        #ICS.UCI.EDU SUBDOMAIN + COUNT -------------------------------------------------------------
+        #ICS.UCI.EDU SUBDOMAIN + COUNT -----------------------------------------------------------
         sd = open("SubDomains.txt", "w")
         sd.write("ics.uci.edu SubDomains and their frequency\n")
         sd.write("-"*80)
         sd.write("\n")
+        #LONGEST PAGE ----------------------------------------------------------------------------
+        p = open("LongestPage.txt","w")
+        p.write("Longest Page in terms of number of words\n")
+        p.write("-"*80)
+        p.write("\n")
+        #NUMBER OF UNIQUE PAGES ------------------------------------------------------------------
+        u = open("UniquePages.txt","w")
+        u.write("Number of Unique Pages")
+        u.write("-"*80)
+        u.write("\n")
 
         #FOR LOOP WRITING TO FILE
         for worker in self.workers:
@@ -46,10 +58,18 @@ class Crawler(object):
             #-----------------------subdomains
             sdDict = {k: v for k, v in sorted(worker.icsSubDomains.items(), key=lambda item: item[0])}
             for k,v in sdDict.items():
-                f.write(k + ", " + str(v) +"\n")
-            #-----------------------
+                sd.write(k + ", " + str(v) +"\n")
+            #-----------------------longestPage
+            p.write(worker.longestPage[0] + "\t\t\tNumber of Words: " + str(worker.longestPage[1]))
+            #-----------------------unqiuePages
+            u.write(str(len(worker.discoveredURLs)))
+
+
+
         f.close()
         sd.close()
+        p.close()
+        u.close()
         
 
     def join(self):

@@ -4,24 +4,20 @@ from urllib.parse import urldefrag
 from bs4 import BeautifulSoup
 from ContentPartA import Token
 
-def scraper(url, resp, mostCommonWords,icsSubDomains):
-    links = extract_next_links(url, resp, mostCommonWords,icsSubDomains)
+def scraper(url, resp, mostCommonWords,icsSubDomains,longestPage):
+    links = extract_next_links(url, resp, mostCommonWords,icsSubDomains,longestPage)
     return [link for link in links if is_valid(link)]
 
-def extract_next_links(url, resp,mostCommonWords,icsSubDomains):
-    # Implementation requred.
+def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage):
     foundLinks = list()
     if (".ics.uci.edu" in url) or (".cs.uci.edu" in url) or (".informatics.uci.edu" in url) or (".stat.uci.edu" in url) or ("today.uci.edu/department/information_computer_sciences" in url):
-        # print("----------------------------------------------------",url)
         if (resp.status >= 600 and resp.status <=606):
             print(resp.error)
         if (resp.status >=200 and resp.status <=599):
             if (resp.status >=400 and resp.status <=599):
-                # print("400-599 STATUS CODE")
                 pass
             else:
                 if (resp.raw_response is not None):
-                    # print("GOOD LINK")
                     #Beautiful Soup Object
                     soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
                     content = Token()                                   #our Token Object
@@ -45,17 +41,21 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains):
                                         ##### UPDATE INSTANCE VARIABLES
                                         mostCommonWords.update(content.tokenDict)   #update most common words with tokens from current url
 
+                                        #FIND LONGEST PAGE
+                                        if (contentLen > longestPage[1]):
+                                            longestPage[0] = URL
+                                            longestPage[1] = contentLen
 
 
 
 
                                         ###### CHECK SUBDOMAIN: If the prev 5 chars is not '//www', is subdomain & not part of query
-
                                         if ('.ics.uci.edu' in URL) and (URL.split('.ics.uci.edu')[0][-5:] != '//www') and ('?' not in URL.split('.ics.uci.edu')[0]):
-                                            if URL in icsSubDomains.keys():
-                                                icsSubDomains[URL] += 1
+                                            subDomainURL = URL.split('.ics.uci.edu')[0] + '.ics.uci.edu'
+                                            if subDomainURL in icsSubDomains.keys():
+                                                icsSubDomains[subDomainURL] += 1
                                             else:
-                                                icsSubDomains[URL] = 1
+                                                icsSubDomains[subDomainURL] = 1
                                             print("THIS MIGHT BE A SUBDOMAIN:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",URL)
 
                                         
