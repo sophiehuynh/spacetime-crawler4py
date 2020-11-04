@@ -14,6 +14,7 @@ class Worker(Thread):
         super().__init__(daemon=True)
         #IMPLEMENT
         self.visitedURLs = set()
+        self.longestPage = (None,0)
         
     def run(self):
         while True:

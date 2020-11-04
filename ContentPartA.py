@@ -1,6 +1,8 @@
 import re
 from bs4 import BeautifulSoup 
-
+import nltk
+nltk.download('stopwords')
+from nltk.corpus import stopwords
 
 class Token:
     def __init__(self):
@@ -11,13 +13,11 @@ class Token:
 
     def tokenizeFile(self,soup):
         myRE = re.compile(r"[A-Za-z]+")
-        ### Call re.findall on the whole big string
         currList = re.findall(myRE, soup.get_text()) 
         for word in currList:
             word = word.lower()
-            if len(word)>=2:  
+            if len(word)>=2 and (word not in stopwords.words('english')):  
                 self.tokenList.append(word)
-        ######## IGNORE STOP WORDS
 
 
     def computeWordFreq(self):

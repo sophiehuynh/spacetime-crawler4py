@@ -1,5 +1,6 @@
 import re
 from urllib.parse import urlparse
+from urllib.parse import urldefrag
 from bs4 import BeautifulSoup
 from ContentPartA import Token
 
@@ -30,7 +31,11 @@ def extract_next_links(url, resp):
                         if(content.top3Freq/contentLen <= 0.5):
                             print("ADDING NEW LINKS")
                             for link in soup.find_all('a'):
-                                foundLinks.append(link.get('href'))
+                                # REMOVE FRAGMENT
+                                if link.get('href') is not None:
+                                    URL = urldefrag(link.get('href'))[0]
+                                    if (".ics.uci.edu" in URL) or (".cs.uci.edu" in URL) or (".informatics.uci.edu" in URL) or (".stat.uci.edu" in URL) or ("today.uci.edu/department/information_computer_sciences" in URL):
+                                        foundLinks.append(URL)
                     else:
                         print("LITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIG ---------------")
     return foundLinks
@@ -52,6 +57,8 @@ def is_valid(url):
     try:
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
+            return False
+        if "/pdf" in parsed.path.lower():
             return False
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
