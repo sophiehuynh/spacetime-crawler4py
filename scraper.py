@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from ContentPartA import Token
 
 def scraper(url, resp):
-    print("THE URL: ",url, "THE END")
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
@@ -14,25 +13,26 @@ def extract_next_links(url, resp):
     if (".ics.uci.edu" in url) or (".cs.uci.edu" in url) or (".informatics.uci.edu" in url) or (".stat.uci.edu" in url) or ("today.uci.edu/department/information_computer_sciences" in url):
         print("----------------------------------------------------",url)
         if (resp.status >= 600 and resp.status <=606):
-            print("ERROR ERROR ERROR ERROR ERROR:                 ",resp.error)
+            print(resp.error)
         if (resp.status >=200 and resp.status <=599):
             if (resp.status >=400 and resp.status <=599):
-                print("SKIPPED")
+                print("400-599 STATUS CODE")
             else:
-                print("GOOD LINK")
-                soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
-                # Detect low-value information
-                content = Token()
-                content.tokenizeFile(soup)
-                contentLen = len(content.tokenList)
-                print(contentLen)
-                if (contentLen >= 200 and contentLen <= 3000):
-                    content.computeWordFreq()
-                    if(content.top3Freq/contentLen <= 0.5):
-                        for link in soup.find_all('a'):
-                            foundLinks.append(link.get('href'))
-                else:
-                    print("LITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIG ---------------")
+                if (resp.raw_response is not None):
+                    print("GOOD LINK")
+                    soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
+                    # Detect low-value page
+                    content = Token()
+                    content.tokenizeFile(soup)
+                    contentLen = len(content.tokenList)
+                    if (contentLen >= 200 and contentLen <= 3000):
+                        content.computeWordFreq()
+                        if(content.top3Freq/contentLen <= 0.5):
+                            print("ADDING NEW LINKS")
+                            for link in soup.find_all('a'):
+                                foundLinks.append(link.get('href'))
+                    else:
+                        print("LITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIG ---------------")
     return foundLinks
             
     #     print(currlink)
