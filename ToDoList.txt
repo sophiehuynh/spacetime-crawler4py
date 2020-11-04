@@ -20,7 +20,7 @@ TO DO
         - mostWords(url,wordCount)
         - number of unique pages
     DONE + 50 most common words in the entire set of pages crawled
-        - number of subdomains in ics.uci.edu Domain
+    DONE + number of subdomains in ics.uci.edu Domain
 -------------------------------------------------------------------
 
 - figure out how to keep track of variables
