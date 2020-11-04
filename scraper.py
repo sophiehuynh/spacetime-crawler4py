@@ -38,9 +38,7 @@ def extract_next_links(url, resp,mostCommonWords):
                                     if (".ics.uci.edu" in URL) or (".cs.uci.edu" in URL) or (".informatics.uci.edu" in URL) or (".stat.uci.edu" in URL) or ("today.uci.edu/department/information_computer_sciences" in URL):
                                         foundLinks.append(URL)
                                         ##### UPDATE INSTANCE VARIABLES
-                                        mostCommonWords = {key: mostCommonWords.get(key, 0) + content.tokenDict.get(key, 0) for key in set(mostCommonWords) | set(content.tokenDict)}
-
-
+                                        mostCommonWords.update(content.tokenDict)   #update most common words with tokens from current url
 
 
 
@@ -54,6 +52,7 @@ def extract_next_links(url, resp,mostCommonWords):
                                             # print("THIS MIGHT BE A SUBDOMAIN:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",URL)
 
 
+                                        
                     else:
                         pass
                         # print("LITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIG ---------------")
