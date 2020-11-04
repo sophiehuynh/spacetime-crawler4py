@@ -4,11 +4,11 @@ from urllib.parse import urldefrag
 from bs4 import BeautifulSoup
 from ContentPartA import Token
 
-def scraper(url, resp):
-    links = extract_next_links(url, resp)
+def scraper(url, resp, mostCommonWords):
+    links = extract_next_links(url, resp, mostCommonWords)
     return [link for link in links if is_valid(link)]
 
-def extract_next_links(url, resp):
+def extract_next_links(url, resp,mostCommonWords):
     # Implementation requred.
     foundLinks = list()
     if (".ics.uci.edu" in url) or (".cs.uci.edu" in url) or (".informatics.uci.edu" in url) or (".stat.uci.edu" in url) or ("today.uci.edu/department/information_computer_sciences" in url):
@@ -36,6 +36,10 @@ def extract_next_links(url, resp):
                                     URL = urldefrag(link.get('href'))[0]
                                     if (".ics.uci.edu" in URL) or (".cs.uci.edu" in URL) or (".informatics.uci.edu" in URL) or (".stat.uci.edu" in URL) or ("today.uci.edu/department/information_computer_sciences" in URL):
                                         foundLinks.append(URL)
+                                        ##### UPDATE INSTANCE VARIABLES
+                                        result = {key: mostCommonWords.get(key, 0) + content.tokenDict.get(key, 0) for key in set(mostCommonWords) | set(content.tokenDict)}
+                                        print(result)
+                                        raise TypeError
                     else:
                         print("LITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIG ---------------")
     return foundLinks

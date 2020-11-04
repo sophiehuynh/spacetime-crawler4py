@@ -28,7 +28,7 @@ class Worker(Thread):
             self.logger.info(
                 f"Downloaded {tbd_url}, status <{resp.status}>, "
                 f"using cache {self.config.cache_server}.")
-            scraped_urls = scraper(tbd_url, resp)
+            scraped_urls = scraper(tbd_url, resp,self.mostCommonWords)
             #IMPLEMENT
             print("THE SIZE OF THE FRONTIERRLS IS NOW: ",len(self.frontier.to_be_downloaded))
             print("THE SIZE OF THE VISTED URLS IS NOW: ",len(self.visitedURLs))
