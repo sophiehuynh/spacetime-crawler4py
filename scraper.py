@@ -21,36 +21,26 @@ def extract_next_links(url, resp):
             else:
                 if (resp.raw_response is not None):
                     print("GOOD LINK")
+                    #Beautiful Soup Object
                     soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
-                    # Detect low-value page
-                    content = Token()
-                    content.tokenizeFile(soup)
-                    contentLen = len(content.tokenList)
-                    if (contentLen >= 200 and contentLen <= 3000):
-                        content.computeWordFreq()
-                        if(content.top3Freq/contentLen <= 0.5):
+                    content = Token()                                   #our Token Object
+                    content.tokenizeFile(soup)                          #tokenize to get list of tokens
+                    contentLen = len(content.tokenList)                 #amount of words/tokens in that link's html content
+                    #Checks
+                    if (contentLen >= 200 and contentLen <= 3000):      #filtering out webpages with too little info or too much(very large) info
+                        content.computeWordFreq()                     
+                        if(content.top3Freq/contentLen <= 0.5):         #assert top 3 words dont make up more than 50% of page text/content
                             print("ADDING NEW LINKS")
                             for link in soup.find_all('a'):
-                                # REMOVE FRAGMENT
-                                if link.get('href') is not None:
+                                if link.get('href') is not None:        # REMOVE FRAGMENT
                                     URL = urldefrag(link.get('href'))[0]
                                     if (".ics.uci.edu" in URL) or (".cs.uci.edu" in URL) or (".informatics.uci.edu" in URL) or (".stat.uci.edu" in URL) or ("today.uci.edu/department/information_computer_sciences" in URL):
                                         foundLinks.append(URL)
                     else:
                         print("LITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIG ---------------")
     return foundLinks
-            
-    #     print(currlink)
-    #     if (".ics.uci.edu/" in currlink):
-    #         print("******LINK IS SUBDOMAIN OF .ICS.UCI.EDU******")
-            #add to a list of subdomains for ics.uci url and increment count for that subdomain
-        #use soup.get_text() to extract all text from a page
-   
-    #parse through the resp.raw_response.content and find http links to crawl
-    #get the http link and add to link -- PRINT IT OUT FOR NOW
-    #CHECKS
-        #if link == url parameter
-    #TO CHECK FOR EACH LINKE???: if the link is valid and is not leading to a trap, a similar page,
+    #add to a list of subdomains for ics.uci url and increment count for that subdomain
+    #TO CHECK :if the link is valid and is not leading to a trap, a similar page,
     # a dead url, a very large file with low info value...?
 
 def is_valid(url):

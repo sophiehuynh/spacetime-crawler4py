@@ -1,0 +1,53 @@
+
+What we Need to do:
+
+- figure out how to keep track of variables
+    - url with the most words ----- tuple(url,#)
+- avoid traps
+    - figure out how to not go into those gajillion comments and replies to comments on evoke.ics.uci.edu
+- detect similar documents
+    - use python library 
+- add find for urls in other places other than anchor tag (dont look at src attributes though)
+- redirecting pages that actually refer to the same page - get that full link first
+    import urllib2
+    response = urllib2.urlopen(HeadRequest("http://google.com/index.html"))
+    response.geturl()
+- figure how to get out of the calender
+- add domain and scheme if only given path??
+    o = urlparse("")
+    if o.scheme is empty .. must add scheme?? how to know when to add domain??
+
+
+-----------------------------------------------------------------------------------------------------------------------
+REPORT
+
+1. # of unique pages?
+    ----> length of visitedURL set 
+
+2. Longest page in # of words
+    ----> longestPage tuple(url,#)
+
+        - have a maxWordCount and compare to current url's wordCount
+        - set new maxWordCount if greater 
+
+3. 50 most common words in the entire set of pages crawled?
+    (ignore english stopwords)
+    ----> dictionary (word:count)
+
+        - add word/token into dictionary and increment count
+        - at the end, sort and convert to list of tuples and get top 50 
+
+4. How many subdomains in ics.uci.edu domain?
+    (subdomain if name comes before ics.uci.edu)
+    ----> dictionary (subdomain:count)
+
+        - check if ____ comes before .ics.uci.edu
+
+    EX: http://vision.ics.uci.edu, 10
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
+LAST:
+- test on the other 3 links then all four together

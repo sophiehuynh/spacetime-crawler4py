@@ -10,7 +10,7 @@ class Token:
         self.tokenDict = {}
         self.top3Freq = 0
 
-
+    #creates list of words in html content
     def tokenizeFile(self,soup):
         myRE = re.compile(r"[A-Za-z]+")
         currList = re.findall(myRE, soup.get_text()) 
@@ -19,7 +19,7 @@ class Token:
             if len(word)>=2 and (word not in stopwords.words('english')):  
                 self.tokenList.append(word)
 
-
+    #count amt of unique words into dictionary AND sets the top 3 most frequent words in html content
     def computeWordFreq(self):
         for t in self.tokenList:                     
             if t not in self.tokenDict.keys():        
