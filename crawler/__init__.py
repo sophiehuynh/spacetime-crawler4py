@@ -27,7 +27,6 @@ class Crawler(object):
         f.write("Top 50 Words and their frequency\n")
         f.write("-"*80)
         f.write("\n")
-        top50 = ""
         for worker in self.workers:
             tempDict = {k: v for k, v in sorted(worker.mostCommonWords.items(), key=lambda item: item[1], reverse=True)}
             keyList = list(tempDict.keys())
@@ -36,8 +35,16 @@ class Crawler(object):
                 wordStr = format(keyList[i]).ljust(45) + "===" + format(str(valueList[i])).rjust(10) + "\n"
                 f.write(wordStr)
         f.close()
-        #-------------------------------------------------------------
-
+        #ICS.UCI.EDU SUBDOMAIN + COUNT -------------------------------------------------------------
+        f = open("SubDomains.txt", "w")
+        f.write("ics.uci.edu SubDomains and their frequency\n")
+        f.write("-"*80)
+        f.write("\n")
+        for worker in self.workers:
+            tempDict = {k: v for k, v in sorted(worker.icsSubDomains.items(), key=lambda item: item[0])}
+            for k,v in tempDict.items():
+                f.write(k + ", " + str(v) +"\n")
+        f.close()
 
     def join(self):
         for worker in self.workers:
