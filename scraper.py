@@ -1,7 +1,7 @@
 import re
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
-
+from ContentPartA import Token
 
 def scraper(url, resp):
     print("THE URL: ",url, "THE END")
@@ -21,8 +21,19 @@ def extract_next_links(url, resp):
             else:
                 print("GOOD LINK")
                 soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
-                for link in soup.find_all('a'):
-                    foundLinks.append(link.get('href'))
+                #ensure that the webpg has valid amount of information
+                content = Token()
+                content.tokenizeFile(soup)
+                contentLen = len(content.tokenList)
+                if (contentLen >= 200 and contentLen <= 3000):
+                    content.computeWordFreq()
+                    if(content.maxFreq/contentLen >= 0.35):
+                        for link in soup.find_all('a'):
+                            foundLinks.append(link.get('href'))
+                else:
+                    print("LITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIG ---------------")
+
+
     return foundLinks
             
     #     print(currlink)
