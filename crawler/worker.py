@@ -13,8 +13,10 @@ class Worker(Thread):
         self.frontier = frontier
         super().__init__(daemon=True)
         #IMPLEMENT
-        self.visitedURLs = set()
-        self.longestPage = (None,0)
+        self.visitedURLs = set()            #all urls scraped (discard fragment)
+        self.longestPage = (None,0)         #(url, maxwordcount)
+        self.icsSubDomains = dict()         #(subdomain:count)
+        self.mostCommonWords = dict()       #(word:frequency) 
         
     def run(self):
         while True:
