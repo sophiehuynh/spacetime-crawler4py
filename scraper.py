@@ -35,11 +35,11 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains):
 
 
                             for link in soup.find_all('a'):
-                                if link.get('href') is not None:
-                                    URL = urldefrag(link.get('href'))[0]    # Remove FRAGMENT
-                                    if URL[:4] != "http":                   # Add 
+                                if (link.get('href') is not None) and (link.get('href') != "#"):    # 'href' might be NONE or might just be a "#", ignore those cases
+                                    URL = urldefrag(link.get('href'))[0]                            # Remove FRAGMENT                                    
+                                    if URL[:4] != "http":                                           # Add https to any "relative links"
                                         URL = "https:"+URL
-                                    frontURL = URL.split("?")[0]            # Remove QUERY section
+                                    frontURL = URL.split("?")[0]                                    # Remove QUERY section to check if domain valid
                                     if (".ics.uci.edu" in frontURL) or (".cs.uci.edu" in frontURL) or (".informatics.uci.edu" in frontURL) or (".stat.uci.edu" in frontURL) or ("today.uci.edu/department/information_computer_sciences" in frontURL):
                                         foundLinks.append(URL)
                                         ##### UPDATE INSTANCE VARIABLES

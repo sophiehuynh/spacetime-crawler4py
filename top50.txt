@@ -1,57 +1,5 @@
 Top 50 Words and their frequency
 --------------------------------------------------------------------------------
-<<<<<<< HEAD
-gopi                                         ===       103
-reply                                        ===        62
-says                                         ===        60
-songs                                        ===        37
-matx                                         ===        30
-inf                                          ===        27
-malik                                        ===        26
-majumder                                     ===        24
-xxxx                                         ===        24
-xxx                                          ===        24
-album                                        ===        24
-javanmardi                                   ===        24
-aditi                                        ===        23
-lattice                                      ===        23
-spectr                                       ===        23
-tamassia                                     ===        23
-data                                         ===        22
-dependability                                ===        22
-string                                       ===        22
-thomas                                       ===        21
-approximate                                  ===        21
-yong                                         ===        21
-song                                         ===        21
-rui                                          ===        21
-diaz                                         ===        20
-htdp                                         ===        20
-appeared                                     ===        19
-borkar                                       ===        17
-systemse                                     ===        17
-lncs                                         ===        17
-dish                                         ===        17
-albums                                       ===        17
-eurographics                                 ===        17
-really                                       ===        16
-sensor                                       ===        16
-cammarota                                    ===        16
-satware                                      ===        16
-mars                                         ===        15
-supervisory                                  ===        15
-ricks                                        ===        15
-oddie                                        ===        15
-rl                                           ===        15
-operators                                    ===        15
-ms                                           ===        14
-input                                        ===        14
-nbsppaper                                    ===        14
-bst                                          ===        14
-behzad                                       ===        14
-sajadi                                       ===        14
-informatics                                  ===        13
-=======
 statistics                                   ===        15
 johnson                                      ===        12
 today                                        ===         9
@@ -102,4 +50,3 @@ favorite                                     ===         4
 grant                                        ===         4
 colleagues                                   ===         4
 linear                                       ===         4
->>>>>>> 5966af2fbf3725c9ec0ac14b3fbb17c96e2ab634
