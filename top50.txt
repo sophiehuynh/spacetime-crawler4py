@@ -1,5 +1,6 @@
 Top 50 Words and their frequency
 --------------------------------------------------------------------------------
+<<<<<<< HEAD
 gopi                                         ===       103
 reply                                        ===        62
 says                                         ===        60
@@ -50,3 +51,55 @@ bst                                          ===        14
 behzad                                       ===        14
 sajadi                                       ===        14
 informatics                                  ===        13
+=======
+statistics                                   ===        15
+johnson                                      ===        12
+today                                        ===         9
+global                                       ===         9
+models                                       ===         9
+conference                                   ===         9
+bayesian                                     ===         8
+unpredictability                             ===         8
+software                                     ===         7
+classes                                      ===         7
+projects                                     ===         7
+login                                        ===         6
+seminar                                      ===         6
+game                                         ===         6
+jam                                          ===         6
+associate                                    ===         6
+joined                                       ===         6
+september                                    ===         6
+major                                        ===         6
+summer                                       ===         6
+class                                        ===         6
+mother                                       ===         5
+really                                       ===         5
+take                                         ===         5
+child                                        ===         5
+professor                                    ===         4
+pm                                           ===         4
+users                                        ===         4
+research                                     ===         4
+news                                         ===         4
+jessica                                      ===         4
+experiences                                  ===         4
+taught                                       ===         4
+group                                        ===         4
+based                                        ===         4
+scienceph                                    ===         4
+work                                         ===         4
+postdoc                                      ===         4
+dogucu                                       ===         4
+fox                                          ===         4
+mihail                                       ===         4
+senior                                       ===         4
+qu                                           ===         4
+develop                                      ===         4
+shindler                                     ===         4
+google                                       ===         4
+favorite                                     ===         4
+grant                                        ===         4
+colleagues                                   ===         4
+linear                                       ===         4
+>>>>>>> 5966af2fbf3725c9ec0ac14b3fbb17c96e2ab634

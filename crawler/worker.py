@@ -16,9 +16,10 @@ class Worker(Thread):
         self.visitedURLs = set()            #all urls scraped (discard fragment)
         self.longestPage = (None,0)         #(url, maxwordcount)
         self.icsSubDomains = dict()         #(subdomain:count)
-        self.mostCommonWords = dict()       #(word:frequency) 
+        self.mostCommonWords = dict()       #(word:frequency)           
         
     def run(self):
+        count = 0
         while True:
             tbd_url = self.frontier.get_tbd_url()
             if not tbd_url:
@@ -28,7 +29,7 @@ class Worker(Thread):
             self.logger.info(
                 f"Downloaded {tbd_url}, status <{resp.status}>, "
                 f"using cache {self.config.cache_server}.")
-            scraped_urls = scraper(tbd_url, resp,self.mostCommonWords)
+            scraped_urls = scraper(tbd_url, resp,self.mostCommonWords,self.icsSubDomains)
             ###CHECKING IF INSTANCE VARIABLES WORKING
             # print("-----***********-",self.mostCommonWords)
             # raise TypeError
@@ -41,5 +42,10 @@ class Worker(Thread):
                     self.frontier.add_url(scraped_url)
             self.frontier.mark_url_complete(tbd_url)
             time.sleep(self.config.time_delay)
+            count += 1
+            print("\n\nCOUNT INCREMENTED\n\n")
         #once out of while loop, that means crawler has stopped and now 
+            if count == 10:
+                print()
+                break
             

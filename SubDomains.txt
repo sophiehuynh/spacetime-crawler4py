@@ -1,0 +1,4 @@
+ics.uci.edu SubDomains and their frequency
+--------------------------------------------------------------------------------
+https://aiclub.ics.uci.edu/, 1
+https://statconsulting.ics.uci.edu/, 9

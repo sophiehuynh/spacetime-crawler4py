@@ -4,11 +4,11 @@ from urllib.parse import urldefrag
 from bs4 import BeautifulSoup
 from ContentPartA import Token
 
-def scraper(url, resp, mostCommonWords):
-    links = extract_next_links(url, resp, mostCommonWords)
+def scraper(url, resp, mostCommonWords,icsSubDomains):
+    links = extract_next_links(url, resp, mostCommonWords,icsSubDomains)
     return [link for link in links if is_valid(link)]
 
-def extract_next_links(url, resp,mostCommonWords):
+def extract_next_links(url, resp,mostCommonWords,icsSubDomains):
     # Implementation requred.
     foundLinks = list()
     if (".ics.uci.edu" in url) or (".cs.uci.edu" in url) or (".informatics.uci.edu" in url) or (".stat.uci.edu" in url) or ("today.uci.edu/department/information_computer_sciences" in url):
@@ -50,13 +50,13 @@ def extract_next_links(url, resp,mostCommonWords):
 
 
                                         ###### CHECK SUBDOMAIN: If the prev 5 chars is not '//www', is subdomain & not part of query
-                                        if ('.ics.uci.edu' in URL) and (URL.split('.ics.uci.edu')[0][-5:] != '//www') and ('?' not in URL.split('.ics.uci.edu')[0]):
-                                            # f = open('Subdomains.txt','a')
-                                            # f.write(URL+"\n")
-                                            # f.close()
-                                            pass
-                                            # print("THIS MIGHT BE A SUBDOMAIN:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",URL)
 
+                                        if ('.ics.uci.edu' in URL) and (URL.split('.ics.uci.edu')[0][-5:] != '//www') and ('?' not in URL.split('.ics.uci.edu')[0]):
+                                            if URL in icsSubDomains.keys():
+                                                icsSubDomains[URL] += 1
+                                            else:
+                                                icsSubDomains[URL] = 1
+                                            print("THIS MIGHT BE A SUBDOMAIN:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",URL)
 
                                         
                     else:
