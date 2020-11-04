@@ -46,9 +46,10 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage):
                                             longestPage[0] = URL
                                             longestPage[1] = contentLen
 
+                                        #ADD TO 
 
 
-
+                                        # AT THIS POINT URL IS DEFRAGGED AND HTTPS: ADDED
                                         ###### CHECK SUBDOMAIN: If the prev 5 chars is not '//www', is subdomain & not part of query
                                         if ('.ics.uci.edu' in URL) and (URL.split('.ics.uci.edu')[0][-5:] != '//www') and ('?' not in URL.split('.ics.uci.edu')[0]):
                                             subDomainURL = URL.split('.ics.uci.edu')[0] + '.ics.uci.edu'
@@ -56,7 +57,6 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage):
                                                 icsSubDomains[subDomainURL] += 1
                                             else:
                                                 icsSubDomains[subDomainURL] = 1
-                                            print("THIS MIGHT BE A SUBDOMAIN:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",URL)
 
                                         
                     else:
