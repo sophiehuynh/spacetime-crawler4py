@@ -45,7 +45,7 @@ class Worker(Thread):
             count += 1
             print("\n\nCOUNT INCREMENTED\n\n")
         #once out of while loop, that means crawler has stopped and now 
-            if count == 10:
+            if count == 1000:
                 print()
                 break
             

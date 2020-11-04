@@ -22,29 +22,35 @@ class Crawler(object):
     def start(self):
         self.start_async()
         self.join()
-        #TOP 50 Common Words written to file -------------------------
+
+        #TOP 50 Common Words Frequency -----------------------------------------------------------
         f = open("top50.txt", "w")
         f.write("Top 50 Words and their frequency\n")
         f.write("-"*80)
         f.write("\n")
+        #ICS.UCI.EDU SUBDOMAIN + COUNT -------------------------------------------------------------
+        sd = open("SubDomains.txt", "w")
+        sd.write("ics.uci.edu SubDomains and their frequency\n")
+        sd.write("-"*80)
+        sd.write("\n")
+
+        #FOR LOOP WRITING TO FILE
         for worker in self.workers:
-            tempDict = {k: v for k, v in sorted(worker.mostCommonWords.items(), key=lambda item: item[1], reverse=True)}
-            keyList = list(tempDict.keys())
-            valueList = list(tempDict.values())
-            for i in range(50): #get top 50 common words and their frequencies and write to file
+            #-----------------------top50
+            t50Dict = {k: v for k, v in sorted(worker.mostCommonWords.items(), key=lambda item: item[1], reverse=True)}
+            keyList = list(t50Dict.keys())
+            valueList = list(t50Dict.values())
+            for i in range(50): 
                 wordStr = format(keyList[i]).ljust(45) + "===" + format(str(valueList[i])).rjust(10) + "\n"
                 f.write(wordStr)
-        f.close()
-        #ICS.UCI.EDU SUBDOMAIN + COUNT -------------------------------------------------------------
-        f = open("SubDomains.txt", "w")
-        f.write("ics.uci.edu SubDomains and their frequency\n")
-        f.write("-"*80)
-        f.write("\n")
-        for worker in self.workers:
-            tempDict = {k: v for k, v in sorted(worker.icsSubDomains.items(), key=lambda item: item[0])}
-            for k,v in tempDict.items():
+            #-----------------------subdomains
+            sdDict = {k: v for k, v in sorted(worker.icsSubDomains.items(), key=lambda item: item[0])}
+            for k,v in sdDict.items():
                 f.write(k + ", " + str(v) +"\n")
+            #-----------------------
         f.close()
+        sd.close()
+        
 
     def join(self):
         for worker in self.workers:

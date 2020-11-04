@@ -1,4 +1,27 @@
 ics.uci.edu SubDomains and their frequency
 --------------------------------------------------------------------------------
-https://aiclub.ics.uci.edu/, 1
-https://statconsulting.ics.uci.edu/, 9
+http://calendar.ics.uci.edu/calendar.php, 2
+http://mhcid.ics.uci.edu/, 14
+http://sprout.ics.uci.edu, 1
+https://calendar.ics.uci.edu/calendar.php, 2
+https://intranet.ics.uci.edu/, 2
+https://mse.ics.uci.edu/%20, 14
+https://mswe.ics.uci.edu, 1
+https://mswe.ics.uci.edu/, 1
+https://mswe.ics.uci.edu/admissions/admissions-overview/, 6
+https://mswe.ics.uci.edu/admissions/cost-and-financial-aid/, 4
+https://mswe.ics.uci.edu/admissions/information_sessions/, 4
+https://mswe.ics.uci.edu/career/additional-resources/, 4
+https://mswe.ics.uci.edu/career/career-planning/, 4
+https://mswe.ics.uci.edu/career/interviewing/, 4
+https://mswe.ics.uci.edu/career/job-search-sites/, 4
+https://mswe.ics.uci.edu/career/mswe-career-services-2/, 4
+https://mswe.ics.uci.edu/career/personal-branding-networking/, 4
+https://mswe.ics.uci.edu/career/resources-for-international-students/, 4
+https://mswe.ics.uci.edu/contact-us/, 4
+https://mswe.ics.uci.edu/faq/, 4
+https://mswe.ics.uci.edu/people/faculty-staff/, 5
+https://mswe.ics.uci.edu/program/about-the-program/, 4
+https://mswe.ics.uci.edu/program/curriculum/, 7
+https://swiki.ics.uci.edu/doku.php, 4
+https://transformativeplay.ics.uci.edu/, 1
