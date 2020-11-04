@@ -21,19 +21,18 @@ def extract_next_links(url, resp):
             else:
                 print("GOOD LINK")
                 soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
-                #ensure that the webpg has valid amount of information
+                # Detect low-value information
                 content = Token()
                 content.tokenizeFile(soup)
                 contentLen = len(content.tokenList)
+                print(contentLen)
                 if (contentLen >= 200 and contentLen <= 3000):
                     content.computeWordFreq()
-                    if(content.maxFreq/contentLen >= 0.35):
+                    if(content.top3Freq/contentLen <= 0.5):
                         for link in soup.find_all('a'):
                             foundLinks.append(link.get('href'))
                 else:
                     print("LITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIG ---------------")
-
-
     return foundLinks
             
     #     print(currlink)

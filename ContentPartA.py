@@ -1,13 +1,13 @@
 import sys
 import re
-import bs4 from BeautifulSoup
+from bs4 import BeautifulSoup 
 
 #My Token Class with variables and methods
 class Token:
     def __init__(self):
         self.tokenList = []
         self.tokenDict = {}
-        self.maxFreq = 0
+        self.top3Freq = 0
 
     '''
         Linear Complexity of O(n) 
@@ -40,8 +40,12 @@ class Token:
                 self.tokenDict[t] = 1
             else:                                                #if Exists in dict already, add 1 to its value (freq)
                 self.tokenDict[t] = self.tokenDict[t] + 1
-        maxFreq = sorted(tokenDict.values(),reverse = True)[0]
-
+        try:
+            self.top3Freq += sorted(self.tokenDict.values(),reverse = True)[0]
+            self.top3Freq += sorted(self.tokenDict.values(),reverse = True)[1]
+            self.top3Freq += sorted(self.tokenDict.values(),reverse = True)[2]
+        except:
+            pass
 
 
 
