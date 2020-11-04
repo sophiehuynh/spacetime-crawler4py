@@ -32,10 +32,15 @@ def extract_next_links(url, resp,mostCommonWords):
                         content.computeWordFreq()                     
                         if(content.top3Freq/contentLen <= 0.5):         #assert top 3 words dont make up more than 50% of page text/content
                             # print("ADDING NEW LINKS")
+
+
                             for link in soup.find_all('a'):
-                                if link.get('href') is not None:        # REMOVE FRAGMENT
-                                    URL = urldefrag(link.get('href'))[0]
-                                    if (".ics.uci.edu" in URL) or (".cs.uci.edu" in URL) or (".informatics.uci.edu" in URL) or (".stat.uci.edu" in URL) or ("today.uci.edu/department/information_computer_sciences" in URL):
+                                if link.get('href') is not None:
+                                    URL = urldefrag(link.get('href'))[0]    # Remove FRAGMENT
+                                    if URL[:4] != "http":                   # Add 
+                                        URL = "https:"+URL
+                                    frontURL = URL.split("?")[0]            # Remove QUERY section
+                                    if (".ics.uci.edu" in frontURL) or (".cs.uci.edu" in frontURL) or (".informatics.uci.edu" in frontURL) or (".stat.uci.edu" in frontURL) or ("today.uci.edu/department/information_computer_sciences" in frontURL):
                                         foundLinks.append(URL)
                                         ##### UPDATE INSTANCE VARIABLES
                                         mostCommonWords.update(content.tokenDict)   #update most common words with tokens from current url
@@ -46,9 +51,10 @@ def extract_next_links(url, resp,mostCommonWords):
 
                                         ###### CHECK SUBDOMAIN: If the prev 5 chars is not '//www', is subdomain & not part of query
                                         if ('.ics.uci.edu' in URL) and (URL.split('.ics.uci.edu')[0][-5:] != '//www') and ('?' not in URL.split('.ics.uci.edu')[0]):
-                                            f = open('Subdomains.txt','a')
-                                            f.write(URL+"\n")
-                                            f.close()
+                                            # f = open('Subdomains.txt','a')
+                                            # f.write(URL+"\n")
+                                            # f.close()
+                                            pass
                                             # print("THIS MIGHT BE A SUBDOMAIN:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",URL)
 
 
@@ -81,4 +87,3 @@ def is_valid(url):
     except TypeError:
         print ("TypeError for ", parsed)
         raise
-
