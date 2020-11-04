@@ -30,8 +30,8 @@ class Worker(Thread):
             #IMPLEMENT
             print("THE SIZE OF THE FRONTIERRLS IS NOW: ",len(self.frontier.to_be_downloaded))
             print("THE SIZE OF THE VISTED URLS IS NOW: ",len(self.visitedURLs))
-            for scraped_url in scraped_urls:           
-                if (scraped_url not in self.visitedURLs):
+            for scraped_url in scraped_urls:                                                    #for each scraped url, visit only if unvisited before
+                if (scraped_url not in self.visitedURLs):                                       #and add to visitedurl set and frontier
                     self.visitedURLs.add(scraped_url)
                     self.frontier.add_url(scraped_url)
             self.frontier.mark_url_complete(tbd_url)
