@@ -23,45 +23,41 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage):
                     content = Token()                                   #our Token Object
                     content.tokenizeFile(soup)                          #tokenize to get list of tokens
                     contentLen = len(content.tokenList)                 #amount of words/tokens in that link's html content
-                    #Checks
                     if (contentLen >= 200 and contentLen <= 3000):      #filtering out webpages with too little info or too much(very large) info
                         content.computeWordFreq()                     
                         if(content.top3Freq/contentLen <= 0.5):         #assert top 3 words dont make up more than 50% of page text/content
-                            # print("ADDING NEW LINKS")
+                            possibleURLs = []
+                            # Links: CONTENT TEXT
+                            content.findTextURLs(soup)
+                            possibleURLs += content.urlList
+                            # Links: HREF
+                            for aTag in soup.find_all('a'):
+                                hreflink = aTag.get('href')
+                                if (hreflink is not None) and (hreflink != "#"):
+                                    possibleURLs.append(hreflink)
+                            ### Go through all found URLs and check if valid
+                            for link in possibleURLs:
+                                URL = urldefrag(link)[0]                # Remove FRAGMENT                                    
+                                if URL[:4] != "http":                   # Add https to any "relative links"
+                                    URL = "https:"+URL
+                                frontURL = URL.split("?")[0]            # Remove QUERY section to check if domain valid
+                                if (".ics.uci.edu" in frontURL) or (".cs.uci.edu" in frontURL) or (".informatics.uci.edu" in frontURL) or (".stat.uci.edu" in frontURL) or ("today.uci.edu/department/information_computer_sciences" in frontURL):
+                                    foundLinks.append(URL)
+                                    ##### UPDATE INSTANCE VARIABLES
+                                    mostCommonWords.update(content.tokenDict)   #update most common words with tokens from current url
+                                    #FIND LONGEST PAGE
+                                    if (contentLen > longestPage[1]):
+                                        longestPage[0] = URL
+                                        longestPage[1] = contentLen
+                                    ###### CHECK SUBDOMAIN: If the prev 5 chars is not '//www' & not part of query
+                                    if ('.ics.uci.edu' in URL) and (URL.split('.ics.uci.edu')[0][-5:] != '//www') and ('?' not in URL.split('.ics.uci.edu')[0]):
+                                        subDomainURL = URL.split('.ics.uci.edu')[0] + '.ics.uci.edu'
+                                        if subDomainURL in icsSubDomains.keys():
+                                            icsSubDomains[subDomainURL] += 1
+                                        else:
+                                            icsSubDomains[subDomainURL] = 1
 
-
-                            for link in soup.find_all('a'):
-                                if (link.get('href') is not None) and (link.get('href') != "#"):    # 'href' might be NONE or might just be a "#", ignore those cases
-                                    URL = urldefrag(link.get('href'))[0]                            # Remove FRAGMENT                                    
-                                    if URL[:4] != "http":                                           # Add https to any "relative links"
-                                        URL = "https:"+URL
-                                    frontURL = URL.split("?")[0]                                    # Remove QUERY section to check if domain valid
-                                    if (".ics.uci.edu" in frontURL) or (".cs.uci.edu" in frontURL) or (".informatics.uci.edu" in frontURL) or (".stat.uci.edu" in frontURL) or ("today.uci.edu/department/information_computer_sciences" in frontURL):
-                                        foundLinks.append(URL)
-                                        ##### UPDATE INSTANCE VARIABLES
-                                        mostCommonWords.update(content.tokenDict)   #update most common words with tokens from current url
-
-                                        #FIND LONGEST PAGE
-                                        if (contentLen > longestPage[1]):
-                                            longestPage[0] = URL
-                                            longestPage[1] = contentLen
-
-
-
-
-                                        ###### CHECK SUBDOMAIN: If the prev 5 chars is not '//www', is subdomain & not part of query
-                                        if ('.ics.uci.edu' in URL) and (URL.split('.ics.uci.edu')[0][-5:] != '//www') and ('?' not in URL.split('.ics.uci.edu')[0]):
-                                            subDomainURL = URL.split('.ics.uci.edu')[0] + '.ics.uci.edu'
-                                            if subDomainURL in icsSubDomains.keys():
-                                                icsSubDomains[subDomainURL] += 1
-                                            else:
-                                                icsSubDomains[subDomainURL] = 1
-                                            print("THIS MIGHT BE A SUBDOMAIN:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",URL)
-
-                                        
-                    else:
-                        pass
-                        # print("LITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIGLITTLEBIG ---------------")
+                    
     return foundLinks
     #add to a list of subdomains for ics.uci url and increment count for that subdomain
     #TO CHECK :if the link is valid and is not leading to a trap, a similar page,
