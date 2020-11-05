@@ -24,7 +24,7 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage):
                     content.tokenizeFile(soup)                          #tokenize to get list of tokens
                     contentLen = len(content.tokenList)                 #amount of words/tokens in that link's html content
                     #Checks
-                    if (contentLen >= 200 and contentLen <= 3000):      #filtering out webpages with too little info or too much(very large) info
+                    if (contentLen >= 200 and contentLen <= 5000):      #filtering out webpages with too little info or too much(very large) info
                         content.computeWordFreq()                     
                         if(content.top3Freq/contentLen <= 0.5):         #assert top 3 words dont make up more than 50% of page text/content
                             # print("ADDING NEW LINKS")
