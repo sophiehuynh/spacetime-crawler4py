@@ -27,12 +27,11 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                         content.computeWordFreq()                     
                         if(content.top3Freq/contentLen <= 0.5):         #assert top 3 words dont make up more than 50% of page text/content
                             ##### UPDATE INSTANCE VARIABLES
-                            mostCommonWords.update(content.tokenDict)   #update most common words with tokens from current url
-                            ##### FIND LONGEST PAGE
-                            if (contentLen > longestPage[1]):
+                            mostCommonWords.update(content.tokenDict)   #3 - update most common words with tokens from current url
+                            if (contentLen > longestPage[1]):           #2 - find longest page
                                 longestPage[0] = url
                                 longestPage[1] = contentLen
-                            ##### CHECK SUBDOMAIN: If the prev 5 chars is not '//www' & not part of query
+                            #4 - CHECK SUBDOMAIN: If the prev 5 chars is not '//www' & not part of query
                             if ('.ics.uci.edu' in url) and (url.split('.ics.uci.edu')[0][-5:] != '//www') and ('?' not in url.split('.ics.uci.edu')[0]):
                                 subDomainURL = url.split('.ics.uci.edu')[0] + '.ics.uci.edu'
                                 if subDomainURL in icsSubDomains.keys():
@@ -52,31 +51,34 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                             ### Go through all found URLs and check if valid
                             curLinkParsed = urlparse(url)
                             for link in possibleURLs:
-                                URL = urldefrag(link)[0]                    # Remove FRAGMENT        
-                                ### Check for relative links         
-                                splitLink = urlparse(link)
-                                if splitLink.netloc=="":                    # If netloc missing, add parent netloc
-                                    URL = "//"+curLinkParsed.netloc + URL
-                                if splitLink.scheme  == "":                 # If scheme missing, add parent scheme
-                                    URL = curLinkParsed.scheme + ":" + URL
-                                frontURL = URL.split("?")[0]            # Remove QUERY section to check if domain valid
-                                u = urlparse(URL)
-                                ### Duplicates/Similarity Detection
                                 try:
-                                    if (len(u.path.split("/")) > 2):
-                                        detectSimURL = u.scheme+u.netloc+u.path.split("/")[0]+u.path.split("/")[1]
-                                    else:
-                                        detectSimURL = u.scheme+u.netloc+u.path.split("/")[1]
+                                    URL = urldefrag(link)[0]                    # Remove FRAGMENT        
+                                    ### Check for relative links         
+                                    splitLink = urlparse(link)
+                                    if splitLink.netloc=="":                    # If netloc missing, add parent netloc
+                                        URL = "//"+curLinkParsed.netloc + URL
+                                    if splitLink.scheme  == "":                 # If scheme missing, add parent scheme
+                                        URL = curLinkParsed.scheme + ":" + URL
+                                    ### Duplicates/Similarity Detection
+                                    u = urlparse(URL)
+                                    try:
+                                        if (len(u.path.split("/")) > 3):
+                                            detectSimURL = u.scheme+u.netloc+u.path.split("/")[1]+u.path.split("/")[2]
+                                        else:
+                                            detectSimURL = u.scheme+u.netloc+u.path.split("/")[1]
+                                    except:
+                                        detectSimURL = URL
+                                    frontURL = URL.split("?")[0]            # Remove QUERY section to check if domain valid
+                                    if (".ics.uci.edu" in frontURL) or (".cs.uci.edu" in frontURL) or (".informatics.uci.edu" in frontURL) or (".stat.uci.edu" in frontURL) or ("today.uci.edu/department/information_computer_sciences" in frontURL):
+                                        ### CHECK FOR URL SIMILARITY HERE
+                                        if detectSimURL not in similarURLs:
+                                            similarURLs[detectSimURL] = 1
+                                        else:
+                                            similarURLs[detectSimURL] += 1                            
+                                        if similarURLs[detectSimURL] <= 150:
+                                            foundLinks.append(URL)             
                                 except:
-                                    detectSimURL = URL
-                                if (".ics.uci.edu" in frontURL) or (".cs.uci.edu" in frontURL) or (".informatics.uci.edu" in frontURL) or (".stat.uci.edu" in frontURL) or ("today.uci.edu/department/information_computer_sciences" in frontURL):
-                                    ### CHECK FOR URL SIMILARITY HERE
-                                    if detectSimURL not in similarURLs:
-                                        similarURLs[detectSimURL] = 1
-                                    else:
-                                        similarURLs[detectSimURL] += 1                            
-                                    if similarURLs[detectSimURL] <= 150:
-                                        foundLinks.append(URL)                                
+                                    pass                   
     return foundLinks
 
 

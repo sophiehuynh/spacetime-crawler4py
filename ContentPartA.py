@@ -32,10 +32,11 @@ class Token:
             if t not in self.tokenDict.keys():        
                 self.tokenDict[t] = 1
             else:                                               
-                self.tokenDict[t] = self.tokenDict[t] + 1
+                self.tokenDict[t] += 1
         try:
-            self.top3Freq += sorted(self.tokenDict.values(),reverse = True)[0]
-            self.top3Freq += sorted(self.tokenDict.values(),reverse = True)[1]
-            self.top3Freq += sorted(self.tokenDict.values(),reverse = True)[2]
+            sortedTD = sorted(self.tokenDict.values(),reverse = True)
+            self.top3Freq += sortedTD[0]
+            self.top3Freq += sortedTD[1]
+            self.top3Freq += sortedTD[2]
         except:
             pass
