@@ -38,7 +38,7 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage):
                                     possibleURLs.append(hreflink)
                             ### Go through all found URLs and check if valid
                             for link in possibleURLs:
-                                URL = urldefrag(link)[0]                # Remove FRAGMENT                                    
+                                URL = urldefrag(link)[0]                # Remove FRAGMENT                      
                                 if URL[:4] != "http":                   # Add https to any "relative links"
                                     URL = "https:"+URL
                                 frontURL = URL.split("?")[0]            # Remove QUERY section to check if domain valid
