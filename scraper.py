@@ -37,12 +37,20 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage):
                                 if (hreflink is not None) and (hreflink != "#"):
                                     possibleURLs.append(hreflink)
                             ### Go through all found URLs and check if valid
+                            curLinkParsed = urlparse(url)
                             for link in possibleURLs:
-                                URL = urldefrag(link)[0]                # Remove FRAGMENT                      
-                                if URL[:4] != "http":                   # Add https to any "relative links"
-                                    URL = "https:"+URL
+                                URL = urldefrag(link)[0]                    # Remove FRAGMENT        
+                                ### Check for relative links         
+                                splitLink = urlparse(link)
+                                if splitLink.netloc=="":                    # If netloc missing, add parent netloc
+                                    URL = "//"+curLinkParsed.netloc + URL
+                                if splitLink.scheme  == "":                 # If scheme missing, add parent scheme
+                                    URL = curLinkParsed.scheme + ":" + URL
                                 frontURL = URL.split("?")[0]            # Remove QUERY section to check if domain valid
                                 if (".ics.uci.edu" in frontURL) or (".cs.uci.edu" in frontURL) or (".informatics.uci.edu" in frontURL) or (".stat.uci.edu" in frontURL) or ("today.uci.edu/department/information_computer_sciences" in frontURL):
+                                    
+                                    ### CHECK FOR URL SIMILARITY HERE
+                                    
                                     foundLinks.append(URL)
                                     ##### UPDATE INSTANCE VARIABLES
                                     mostCommonWords.update(content.tokenDict)   #update most common words with tokens from current url
@@ -57,8 +65,6 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage):
                                             icsSubDomains[subDomainURL] += 1
                                         else:
                                             icsSubDomains[subDomainURL] = 1
-
-                    
     return foundLinks
     #add to a list of subdomains for ics.uci url and increment count for that subdomain
     #TO CHECK :if the link is valid and is not leading to a trap, a similar page,
@@ -71,10 +77,12 @@ def is_valid(url):
             return False
         if "/pdf" in parsed.path.lower():
             return False
+        if "/xml" in parsed.path.lower():
+            return False
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
-            + r"|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf"
+            + r"|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf|odc|xml"
             + r"|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names"
             + r"|data|dat|exe|bz2|tar|msi|bin|7z|psd|dmg|iso"
             + r"|epub|dll|cnf|tgz|sha1"
@@ -84,3 +92,4 @@ def is_valid(url):
     except TypeError:
         print ("TypeError for ", parsed)
         raise
+
