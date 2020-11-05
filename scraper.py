@@ -28,7 +28,8 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                     content.tokenizeFile(soup)                          #tokenize to get list of tokens
                     contentLen = len(content.tokenList)                 #amount of words/tokens in that link's html content
                     #Checks
-                    if (contentLen >= 300 and contentLen <= 5000):      #filtering out webpages with too little info or too much(very large) info
+                    print("\n",contentLen,"\n")
+                    if (contentLen >= 200 and contentLen <= 5000):      #filtering out webpages with too little info or too much(very large) info
                         content.computeWordFreq()                     
                         if(content.top3Freq/contentLen <= 0.5):         #assert top 3 words dont make up more than 50% of page text/content
                             ##### UPDATE INSTANCE VARIABLES
@@ -53,7 +54,7 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                             # Links: HREF
                             for aTag in soup.find_all('a'):
                                 hreflink = aTag.get('href')
-                                if (hreflink is not None) and (hreflink != "#"):
+                                if (hreflink is not None) and (hreflink != "#") and ("?" not in hreflink):
                                     possibleURLs.append(hreflink)
                             ### Go through all found URLs and check if valid
                             curLinkParsed = urlparse(url)
@@ -65,15 +66,24 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                                     URL = "//"+curLinkParsed.netloc + URL
                                 if splitLink.scheme  == "":                 # If scheme missing, add parent scheme
                                     URL = curLinkParsed.scheme + ":" + URL
+
                                 frontURL = URL.split("?")[0]            # Remove QUERY section to check if domain valid
+                                u = urlparse(URL)
+                                try:
+                                    if (len(u.path.split("/")) > 2):
+                                        detectSimURL = u.scheme+u.netloc+u.path.split("/")[:2]
+                                    else:
+                                        detectSimURL = u.scheme+u.netloc+u.path.split("/")[1]
+                                except:
+                                    detectSimURL = URL
                                 if (".ics.uci.edu" in frontURL) or (".cs.uci.edu" in frontURL) or (".informatics.uci.edu" in frontURL) or (".stat.uci.edu" in frontURL) or ("today.uci.edu/department/information_computer_sciences" in frontURL):
                                     ### CHECK FOR URL SIMILARITY HERE
-                                    if frontURL not in similarURLs:
-                                        similarURLs[frontURL] = 1
+                                    if detectSimURL not in similarURLs:
+                                        similarURLs[detectSimURL] = 1
                                     else:
-                                        similarURLs[frontURL] += 1
+                                        similarURLs[detectSimURL] += 1
                                     
-                                    if similarURLs[frontURL] <= 100:        #we have gone to similar ones before, don't go to it again!
+                                    if similarURLs[detectSimURL] <= 100:        #we have gone to similar ones before, don't go to it again!
                                         foundLinks.append(URL)
                                     else:
                                         print("GREATER THAN 100 ++++++++++++++++++++++++++++++++++++++++++++++++++++++")
