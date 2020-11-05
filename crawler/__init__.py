@@ -64,9 +64,9 @@ class Crawler(object):
 
         #Combine the 4 files into 1 Report File
         with open("Report.txt", "w") as repfile:
-            r.write("CRAWLING REPORT\n\n")
-            r.write("="*140)
-            r.write("\n")
+            repfile.write("CRAWLING REPORT\n\n")
+            repfile.write("="*140)
+            repfile.write("\n")
             with open("UniquePages.txt", "r") as ufile:
                 repfile.write(ufile.read())
                 repfile.write("-"*140)
