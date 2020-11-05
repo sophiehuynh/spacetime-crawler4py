@@ -23,29 +23,25 @@ TO DO
     DONE + number of subdomains in ics.uci.edu Domain
 -------------------------------------------------------------------
 
--links inside the text too
-
--DETECT SIMILAR urls
+DONE + links inside the text too
+     + add find for urls in other places other than anchor tag (dont look at src attributes though)
 
 DONE + figure out how to keep track of variables
 
-- avoid traps
+-DETECT SIMILAR urls
+    - avoid traps
     - figure out how to not go into those gajillion comments and replies to comments on evoke.ics.uci.edu
+    - figure how to get out of the calendar
 
-- detect similar documents
-    - use python library 
-    - similarity threshold to avoid falling into traps -> get a hash number for the webpage itself and compare??
-
-- add find for urls in other places other than anchor tag (dont look at src attributes though)
 
 - redirecting pages that actually refer to the same page - get that full link first???
     import urllib2
     response = urllib2.urlopen(HeadRequest("http://google.com/index.html"))
     response.geturl()
 
-- figure how to get out of the calendar
 
-- add domain and scheme if only given path??
+
+DONE + add domain and scheme if only given path?? FOR RELATIVE PATHS
     o = urlparse("")
     if o.scheme is empty .. must add scheme?? how to know when to add domain??
 
@@ -79,9 +75,3 @@ REPORT
 
     EX: http://vision.ics.uci.edu, 10
 
-
-
-
------------------------------------------------------------------------------------------------------------------------
-LAST:
-- test on the other 3 links then all four together
