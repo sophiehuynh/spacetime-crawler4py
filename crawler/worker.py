@@ -17,6 +17,7 @@ class Worker(Thread):
         self.longestPage = [None,0]         #(url, maxwordcount)
         self.icsSubDomains = dict()         #(subdomain:count)
         self.mostCommonWords = dict()       #(word:frequency)   
+        self.similarURLs = dict()           #don't crawl to a link once have met a threshold
         
     def run(self):
         count = 0
@@ -29,7 +30,7 @@ class Worker(Thread):
             self.logger.info(
                 f"Downloaded {tbd_url}, status <{resp.status}>, "
                 f"using cache {self.config.cache_server}.")
-            scraped_urls = scraper(tbd_url, resp,self.mostCommonWords,self.icsSubDomains,self.longestPage)
+            scraped_urls = scraper(tbd_url, resp,self.mostCommonWords,self.icsSubDomains,self.longestPage,self.similarURLs)
             ###CHECKING IF INSTANCE VARIABLES WORKING
 
             #IMPLEMENT
@@ -44,7 +45,7 @@ class Worker(Thread):
             count += 1
             print("\n\n",count,"\n\n")
         #once out of while loop, that means crawler has stopped and now 
-            if count == 100:
-                print()
-                break
+            # if count == 100:
+            #     print()
+            #     break
             
