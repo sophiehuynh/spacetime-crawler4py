@@ -23,8 +23,6 @@ class Crawler(object):
         self.start_async()
         self.join()
 
-        #     REPORT FINDINGS WRITTEN INTO FILE    
-
         #TOP 50 Common Words Frequency -----------------------------------------------------------
         f = open("top50.txt", "w")
         f.write("Top 50 Words and their frequency\n")
@@ -42,7 +40,7 @@ class Crawler(object):
         p.write("\n")
         #NUMBER OF UNIQUE PAGES ------------------------------------------------------------------
         u = open("UniquePages.txt","w")
-        u.write("Number of Unique Pages")
+        u.write("Number of Unique Pages\n")
         u.write("-"*80)
         u.write("\n")
 
@@ -64,6 +62,22 @@ class Crawler(object):
             #-----------------------unqiuePages
             u.write(str(len(worker.discoveredURLs)))
 
+        #Combine the 4 files into 1 Report File
+        with open("Report.txt", "w") as repfile:
+            r.write("CRAWLING REPORT\n\n")
+            r.write("="*140)
+            r.write("\n")
+            with open("UniquePages.txt", "r") as ufile:
+                repfile.write(ufile.read())
+                repfile.write("-"*140)
+            with open("LongestPage.txt", "r") as pfile:
+                repfile.write(pfile.read())
+                repfile.write("-"*140)
+            with open("top50.txt", "r") as ffile:
+                repfile.write(ffile.read())
+                repfile.write("-"*140)
+            with open("SubDomains.txt", "r") as sdfile:
+                repfile.write(sdfile.read())
 
 
         f.close()

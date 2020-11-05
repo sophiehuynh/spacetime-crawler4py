@@ -25,6 +25,8 @@ TO DO
 
 -links inside the text too
 
+-DETECT SIMILAR urls
+
 DONE + figure out how to keep track of variables
 
 - avoid traps
