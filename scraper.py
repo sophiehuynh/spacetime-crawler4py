@@ -71,7 +71,7 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                                 u = urlparse(URL)
                                 try:
                                     if (len(u.path.split("/")) > 2):
-                                        detectSimURL = u.scheme+u.netloc+u.path.split("/")[:2]
+                                        detectSimURL = u.scheme+u.netloc+u.path.split("/")[0]+u.path.split("/")[1]
                                     else:
                                         detectSimURL = u.scheme+u.netloc+u.path.split("/")[1]
                                 except:
@@ -115,4 +115,3 @@ def is_valid(url):
     except TypeError:
         print ("TypeError for ", parsed)
         raise
-
