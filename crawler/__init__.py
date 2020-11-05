@@ -56,37 +56,44 @@ class Crawler(object):
                     f.write(wordStr)
                 except:
                     break
+            f.write("\n")
             #-----------------------subdomains
             sdDict = {k: v for k, v in sorted(worker.icsSubDomains.items(), key=lambda item: item[0])}
             for k,v in sdDict.items():
                 sd.write(k + ", " + str(v) +"\n")
             #-----------------------longestPage
             p.write(str(worker.longestPage[0]) + "\t\t\tNumber of Words: " + str(worker.longestPage[1]))
+            p.write("\n")
             #-----------------------unqiuePages
             u.write(str(len(worker.discoveredURLs)))
-
-        #Combine the 4 files into 1 Report File
-        with open("Report.txt", "w") as repfile:
-            repfile.write("CRAWLING REPORT\n\n")
-            repfile.write("="*140)
-            repfile.write("\n")
-            with open("1_UniquePages.txt", "r") as ufile:
-                repfile.write(ufile.read())
-                repfile.write("-"*140)
-            with open("2_LongestPage.txt", "r") as pfile:
-                repfile.write(pfile.read())
-                repfile.write("-"*140)
-            with open("3_top50.txt", "r") as ffile:
-                repfile.write(ffile.read())
-                repfile.write("-"*140)
-            with open("4_SubDomains.txt", "r") as sdfile:
-                repfile.write(sdfile.read())
-
-
+            u.write("\n")
         f.close()
         sd.close()
         p.close()
         u.close()
+        #Combine the 4 files into 1 Report File
+        with open("Report.txt", "w") as repfile:
+            repfile.write("CRAWLING REPORT\n\n")
+            repfile.write("="*140)
+            repfile.write("\n\n")
+            with open("1_UniquePages.txt", "r") as ufile:
+                repfile.write(ufile.read())
+                repfile.write("-"*140)
+                repfile.write("\n\n")
+            with open("2_LongestPage.txt", "r") as pfile:
+                repfile.write(pfile.read())
+                repfile.write("-"*140)
+                repfile.write("\n\n")
+            with open("3_top50.txt", "r") as ffile:
+                repfile.write(ffile.read())
+                repfile.write("-"*140)
+                repfile.write("\n\n")
+            with open("4_SubDomains.txt", "r") as sdfile:
+                repfile.write(sdfile.read())
+                repfile.write("\n")
+
+
+   
         
 
     def join(self):

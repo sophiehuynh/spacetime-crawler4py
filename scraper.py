@@ -12,14 +12,10 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
     foundLinks = list()
     if (".ics.uci.edu" in url) or (".cs.uci.edu" in url) or (".informatics.uci.edu" in url) or (".stat.uci.edu" in url) or ("today.uci.edu/department/information_computer_sciences" in url):
         if (resp.status >= 600 and resp.status <=606):
-            print(resp.error)
+            pass
         if (resp.status >=200 and resp.status <=599):
             if (resp.status >=400 and resp.status <=599):
-                frontURL = url.split("?")[0]
-                if frontURL not in similarURLs:
-                    similarURLs[frontURL] = 1
-                else:
-                    similarURLs[frontURL] += 1
+                pass
             else:
                 if (resp.raw_response is not None):
                     #Beautiful Soup Object --------------------------------------------------------------------------------------------------
@@ -27,25 +23,22 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                     content = Token()                                   #our Token Object
                     content.tokenizeFile(soup)                          #tokenize to get list of tokens
                     contentLen = len(content.tokenList)                 #amount of words/tokens in that link's html content
-                    #Checks
-                    print("\n",contentLen,"\n")
                     if (contentLen >= 200 and contentLen <= 5000):      #filtering out webpages with too little info or too much(very large) info
                         content.computeWordFreq()                     
                         if(content.top3Freq/contentLen <= 0.5):         #assert top 3 words dont make up more than 50% of page text/content
                             ##### UPDATE INSTANCE VARIABLES
                             mostCommonWords.update(content.tokenDict)   #update most common words with tokens from current url
-                            #FIND LONGEST PAGE
+                            ##### FIND LONGEST PAGE
                             if (contentLen > longestPage[1]):
                                 longestPage[0] = url
                                 longestPage[1] = contentLen
-                            ###### CHECK SUBDOMAIN: If the prev 5 chars is not '//www' & not part of query
+                            ##### CHECK SUBDOMAIN: If the prev 5 chars is not '//www' & not part of query
                             if ('.ics.uci.edu' in url) and (url.split('.ics.uci.edu')[0][-5:] != '//www') and ('?' not in url.split('.ics.uci.edu')[0]):
                                 subDomainURL = url.split('.ics.uci.edu')[0] + '.ics.uci.edu'
                                 if subDomainURL in icsSubDomains.keys():
                                     icsSubDomains[subDomainURL] += 1
                                 else:
                                     icsSubDomains[subDomainURL] = 1
-                            
                             #BEGIN TO FIND ALL URLS ON THIS CURRENT WEBPAGE -----------------------------------------------------------------
                             possibleURLs = []
                             # Links: CONTENT TEXT
@@ -66,9 +59,9 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                                     URL = "//"+curLinkParsed.netloc + URL
                                 if splitLink.scheme  == "":                 # If scheme missing, add parent scheme
                                     URL = curLinkParsed.scheme + ":" + URL
-
                                 frontURL = URL.split("?")[0]            # Remove QUERY section to check if domain valid
                                 u = urlparse(URL)
+                                ### Duplicates/Similarity Detection
                                 try:
                                     if (len(u.path.split("/")) > 2):
                                         detectSimURL = u.scheme+u.netloc+u.path.split("/")[0]+u.path.split("/")[1]
@@ -81,17 +74,12 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                                     if detectSimURL not in similarURLs:
                                         similarURLs[detectSimURL] = 1
                                     else:
-                                        similarURLs[detectSimURL] += 1
-                                    
-                                    if similarURLs[detectSimURL] <= 100:        #we have gone to similar ones before, don't go to it again!
-                                        foundLinks.append(URL)
-                                    else:
-                                        print("GREATER THAN 100 ++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-                                    
+                                        similarURLs[detectSimURL] += 1                            
+                                    if similarURLs[detectSimURL] <= 150:
+                                        foundLinks.append(URL)                                
     return foundLinks
-    #add to a list of subdomains for ics.uci url and increment count for that subdomain
-    #TO CHECK :if the link is valid and is not leading to a trap, a similar page,
-    # a dead url, a very large file with low info value...?
+
+
 
 def is_valid(url):
     try:
@@ -106,7 +94,7 @@ def is_valid(url):
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4|war"
             + r"|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf|odc|xml"
-            + r"|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names"
+            + r"|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names|ppsx"
             + r"|data|dat|exe|bz2|tar|msi|bin|7z|psd|dmg|iso"
             + r"|epub|dll|cnf|tgz|sha1"
             + r"|thmx|mso|arff|rtf|jar|csv"
