@@ -1,0 +1,168 @@
+CRAWLING REPORT
+
+============================================================================================================================================
+
+Number of Unique Pages
+--------------------------------------------------------------------------------
+10538
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Longest Page in terms of number of words
+--------------------------------------------------------------------------------
+http://www.ics.uci.edu/~dechter/publications.html			Number of Words: 4976
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Top 50 Words and their frequency
+--------------------------------------------------------------------------------
+cerr                                         ===       108
+marmaris                                     ===        95
+cellgroupdata                                ===        82
+boxdata                                      ===        76
+celllabel                                    ===        67
+privatetestcase                              ===        60
+rowbox                                       ===        55
+ixfilehandle                                 ===        52
+url                                          ===        51
+professorresearch                            ===        51
+cam                                          ===        50
+retrieves                                    ===        50
+expr                                         ===        48
+indexfilename                                ===        47
+logit                                        ===        41
+que                                          ===        41
+bpr                                          ===        40
+largeleft                                    ===        40
+gosub                                        ===        39
+xinv                                         ===        37
+wed                                          ===        35
+mon                                          ===        34
+senderlocation                               ===        33
+stnt                                         ===        33
+ixtest                                       ===        32
+servisi                                      ===        32
+dfa                                          ===        32
+arxiv                                        ===        31
+pbf                                          ===        30
+nfa                                          ===        29
+fri                                          ===        28
+alecture                                     ===        28
+fsa                                          ===        28
+testcase                                     ===        28
+localtime                                    ===        27
+testr                                        ===        27
+isoaho                                       ===        27
+kmeans                                       ===        27
+actualresultcnt                              ===        27
+malik                                        ===        26
+fmt                                          ===        26
+valueb                                       ===        26
+rehberi                                      ===        26
+tiles                                        ===        26
+compact                                      ===        25
+shivaj                                       ===        25
+nigussie                                     ===        25
+pmwiki                                       ===        25
+majumder                                     ===        24
+virtanen                                     ===        24
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+ics.uci.edu SubDomains and their frequency
+--------------------------------------------------------------------------------
+http://archive.ics.uci.edu, 2
+http://asterix.ics.uci.edu, 6
+http://calendar.ics.uci.edu, 5
+http://cbcl.ics.uci.edu, 2
+http://cert.ics.uci.edu, 3
+http://cml.ics.uci.edu, 1
+http://computableplant.ics.uci.edu, 14
+http://cradl.ics.uci.edu, 3
+http://cwicsocal18.ics.uci.edu, 1
+http://dejavu.ics.uci.edu, 1
+http://duttgroup.ics.uci.edu, 2
+http://dynamo.ics.uci.edu, 1
+http://emj.ics.uci.edu, 2
+http://esl.ics.uci.edu, 2
+http://evoke.ics.uci.edu, 1
+http://flamingo.ics.uci.edu, 10
+http://fr.ics.uci.edu, 4
+http://frost.ics.uci.edu, 1
+http://futurehealth.ics.uci.edu, 5
+http://ganglia.ics.uci.edu, 1
+http://graphics.ics.uci.edu, 2
+http://graphmod.ics.uci.edu, 1
+http://hai.ics.uci.edu, 2
+http://hana.ics.uci.edu, 13
+http://hobbes.ics.uci.edu, 1
+http://honors.ics.uci.edu, 1
+http://i-sensorium.ics.uci.edu, 3
+http://informatics.ics.uci.edu, 2
+http://ipubmed.ics.uci.edu, 1
+http://isg.ics.uci.edu, 2
+http://malek.ics.uci.edu, 1
+http://mcs.ics.uci.edu, 2
+http://mhcid.ics.uci.edu, 3
+http://mondego.ics.uci.edu, 3
+http://motifmap-rna.ics.uci.edu, 2
+http://motifmap.ics.uci.edu, 2
+http://nalini.ics.uci.edu, 1
+http://ngs.ics.uci.edu, 3
+http://perennialpolycultures.ics.uci.edu, 2
+http://plrg.ics.uci.edu, 8
+http://psearch.ics.uci.edu, 1
+http://radicle.ics.uci.edu, 1
+http://riscit.ics.uci.edu, 1
+http://sdcl.ics.uci.edu, 198
+http://seal.ics.uci.edu, 1
+http://sherlock.ics.uci.edu, 4
+http://sli.ics.uci.edu, 82
+http://sourcerer.ics.uci.edu, 1
+http://sprout.ics.uci.edu, 1
+http://support.ics.uci.edu, 1
+http://swiki.ics.uci.edu, 3
+http://tastier.ics.uci.edu, 1
+http://vision.ics.uci.edu, 177
+http://wics.ics.uci.edu, 5
+http://www-db.ics.uci.edu, 5
+http://www.cert.ics.uci.edu, 2
+http://www.graphics.ics.uci.edu, 1
+http://www.informatics.ics.uci.edu, 1
+http://xtune.ics.uci.edu, 2
+https://aiclub.ics.uci.edu, 1
+https://archive.ics.uci.edu, 1
+https://cbcl.ics.uci.edu, 8
+https://chenli.ics.uci.edu, 8
+https://cml.ics.uci.edu, 151
+https://cradl.ics.uci.edu, 7
+https://cwicsocal18.ics.uci.edu, 5
+https://cyberclub.ics.uci.edu, 10
+https://duttgroup.ics.uci.edu, 57
+https://emj.ics.uci.edu, 32
+https://evoke.ics.uci.edu, 72
+https://futurehealth.ics.uci.edu, 1
+https://grape.ics.uci.edu, 68
+https://honors.ics.uci.edu, 16
+https://iasl.ics.uci.edu, 11
+https://ipf.ics.uci.edu, 1
+https://isg.ics.uci.edu, 84
+https://jgarcia.ics.uci.edu, 1
+https://mailman.ics.uci.edu, 2
+https://mcs.ics.uci.edu, 38
+https://mhcid.ics.uci.edu, 11
+https://mse.ics.uci.edu, 3
+https://mswe.ics.uci.edu, 15
+https://nalini.ics.uci.edu, 2
+https://ngs.ics.uci.edu, 1336
+https://redmiles.ics.uci.edu, 6
+https://seal.ics.uci.edu, 6
+https://sli.ics.uci.edu, 121
+https://statconsulting.ics.uci.edu, 5
+https://student-council.ics.uci.edu, 1
+https://studentcouncil.ics.uci.edu, 1
+https://support.ics.uci.edu, 21
+https://transformativeplay.ics.uci.edu, 31
+https://wics.ics.uci.edu, 481
+
+
