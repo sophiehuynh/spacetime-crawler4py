@@ -23,7 +23,7 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                     content = Token()                                   #our Token Object
                     content.tokenizeFile(soup)                          #tokenize to get list of tokens
                     contentLen = len(content.tokenList)                 #amount of words/tokens in that link's html content
-                    if (contentLen >= 200 and contentLen <= 5000):      #filtering out webpages with too little info or too much(very large) info
+                    if (contentLen >= 100 and contentLen <= 5000):      #filtering out webpages with too little info or too much(very large) info
                         content.computeWordFreq()                     
                         if(content.top3Freq/contentLen <= 0.5):         #assert top 3 words dont make up more than 50% of page text/content
                             ##### UPDATE INSTANCE VARIABLES
@@ -62,7 +62,9 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                                     ### Duplicates/Similarity Detection
                                     u = urlparse(URL)
                                     try:
-                                        if (len(u.path.split("/")) > 3):
+                                        if (len(u.path.split("/")) > 6):
+                                            detectSimURL = u.scheme+u.netloc+u.path.split("/")[1]+u.path.split("/")[2]+u.path.split("/")[3]
+                                        elif (len(u.path.split("/")) > 3):
                                             detectSimURL = u.scheme+u.netloc+u.path.split("/")[1]+u.path.split("/")[2]
                                         else:
                                             detectSimURL = u.scheme+u.netloc+u.path.split("/")[1]
@@ -75,7 +77,7 @@ def extract_next_links(url, resp,mostCommonWords,icsSubDomains,longestPage,simil
                                             similarURLs[detectSimURL] = 1
                                         else:
                                             similarURLs[detectSimURL] += 1                            
-                                        if similarURLs[detectSimURL] <= 150:
+                                        if similarURLs[detectSimURL] <= 300:
                                             foundLinks.append(URL)             
                                 except:
                                     pass                   

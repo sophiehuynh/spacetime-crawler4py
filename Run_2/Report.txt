@@ -1,0 +1,114 @@
+CRAWLING REPORT
+
+============================================================================================================================================
+
+Number of Unique Pages
+--------------------------------------------------------------------------------
+4531
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Longest Page in terms of number of words
+--------------------------------------------------------------------------------
+https://isg.ics.uci.edu/publications			Number of Words: 4677
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Top 50 Words and their frequency
+--------------------------------------------------------------------------------
+doi                                          ===       155
+veidenbaum                                   ===        77
+invited                                      ===        59
+avg                                          ===        54
+professorresearch                            ===        51
+pubstate                                     ===        50
+tppubtype                                    ===        50
+fitted                                       ===        44
+chair                                        ===        42
+alexander                                    ===        42
+actor                                        ===        42
+node                                         ===        38
+closehttps                                   ===        38
+co                                           ===        37
+actors                                       ===        36
+turnitin                                     ===        35
+speaker                                      ===        34
+spring                                       ===        33
+wt                                           ===        33
+ind                                          ===        32
+nicolau                                      ===        31
+crossref                                     ===        31
+pp                                           ===        30
+la                                           ===        29
+proc                                         ===        29
+tmp                                          ===        28
+localtime                                    ===        27
+supp                                         ===        26
+conference                                   ===        25
+uu                                           ===        24
+summer                                       ===        22
+divorce                                      ===        22
+der                                          ===        21
+thomas                                       ===        21
+alexandru                                    ===        21
+yong                                         ===        21
+embedded                                     ===        20
+uploads                                      ===        20
+wp                                           ===        20
+uddin                                        ===        20
+appeared                                     ===        19
+flights                                      ===        19
+stepsize                                     ===        19
+international                                ===        18
+symposium                                    ===        18
+recipe                                       ===        18
+swt                                          ===        18
+semantic                                     ===        17
+numbers                                      ===        17
+slideshare                                   ===        17
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+ics.uci.edu SubDomains and their frequency
+--------------------------------------------------------------------------------
+http://asterix.ics.uci.edu, 5
+http://cert.ics.uci.edu, 2
+http://cml.ics.uci.edu, 1
+http://cradl.ics.uci.edu, 2
+http://cwicsocal18.ics.uci.edu, 1
+http://dynamo.ics.uci.edu, 1
+http://esl.ics.uci.edu, 2
+http://flamingo.ics.uci.edu, 7
+http://fr.ics.uci.edu, 4
+http://futurehealth.ics.uci.edu, 5
+http://ganglia.ics.uci.edu, 1
+http://ipubmed.ics.uci.edu, 1
+http://isg.ics.uci.edu, 2
+http://mhcid.ics.uci.edu, 2
+http://nalini.ics.uci.edu, 1
+http://ngs.ics.uci.edu, 3
+http://plrg.ics.uci.edu, 8
+http://psearch.ics.uci.edu, 1
+http://sdcl.ics.uci.edu, 198
+http://sherlock.ics.uci.edu, 4
+http://support.ics.uci.edu, 1
+http://tastier.ics.uci.edu, 1
+http://vision.ics.uci.edu, 2
+http://wics.ics.uci.edu, 2
+http://www-db.ics.uci.edu, 5
+http://xtune.ics.uci.edu, 2
+https://cml.ics.uci.edu, 107
+https://cradl.ics.uci.edu, 7
+https://cwicsocal18.ics.uci.edu, 5
+https://futurehealth.ics.uci.edu, 1
+https://isg.ics.uci.edu, 84
+https://mhcid.ics.uci.edu, 11
+https://mse.ics.uci.edu, 3
+https://mswe.ics.uci.edu, 13
+https://nalini.ics.uci.edu, 2
+https://ngs.ics.uci.edu, 668
+https://student-council.ics.uci.edu, 1
+https://support.ics.uci.edu, 20
+https://wics.ics.uci.edu, 319
+
+

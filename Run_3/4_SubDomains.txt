@@ -1,0 +1,42 @@
+ics.uci.edu SubDomains and their frequency
+--------------------------------------------------------------------------------
+http://asterix.ics.uci.edu, 5
+http://cert.ics.uci.edu, 2
+http://cml.ics.uci.edu, 1
+http://cradl.ics.uci.edu, 2
+http://dynamo.ics.uci.edu, 1
+http://esl.ics.uci.edu, 2
+http://flamingo.ics.uci.edu, 7
+http://fr.ics.uci.edu, 4
+http://futurehealth.ics.uci.edu, 5
+http://ganglia.ics.uci.edu, 1
+http://ipubmed.ics.uci.edu, 1
+http://isg.ics.uci.edu, 2
+http://mhcid.ics.uci.edu, 2
+http://nalini.ics.uci.edu, 1
+http://ngs.ics.uci.edu, 3
+http://plrg.ics.uci.edu, 8
+http://psearch.ics.uci.edu, 1
+http://sdcl.ics.uci.edu, 198
+http://sherlock.ics.uci.edu, 4
+http://support.ics.uci.edu, 1
+http://tastier.ics.uci.edu, 1
+http://vision.ics.uci.edu, 2
+http://wics.ics.uci.edu, 2
+http://www-db.ics.uci.edu, 5
+http://xtune.ics.uci.edu, 2
+https://cbcl.ics.uci.edu, 2
+https://cml.ics.uci.edu, 107
+https://cradl.ics.uci.edu, 7
+https://futurehealth.ics.uci.edu, 1
+https://grape.ics.uci.edu, 7
+https://isg.ics.uci.edu, 84
+https://mhcid.ics.uci.edu, 11
+https://mse.ics.uci.edu, 3
+https://mswe.ics.uci.edu, 13
+https://nalini.ics.uci.edu, 2
+https://ngs.ics.uci.edu, 668
+https://student-council.ics.uci.edu, 1
+https://support.ics.uci.edu, 20
+https://wics.ics.uci.edu, 107
+

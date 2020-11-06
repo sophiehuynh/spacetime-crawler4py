@@ -41,5 +41,6 @@ class Worker(Thread):
                 count +=1
                 print("\n",count,"\n")
             except:
+                print("IT BLEW UPPPPPPPP")
                 pass
             
