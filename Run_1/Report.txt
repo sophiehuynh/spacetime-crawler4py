@@ -1,0 +1,114 @@
+CRAWLING REPORT
+
+============================================================================================================================================
+
+Number of Unique Pages
+--------------------------------------------------------------------------------
+3993
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Longest Page in terms of number of words
+--------------------------------------------------------------------------------
+http://www.ics.uci.edu/~dechter/publications.html			Number of Words: 4976
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Top 50 Words and their frequency
+--------------------------------------------------------------------------------
+song                                         ===       167
+pdf                                          ===       102
+cellgroupdata                                ===        82
+facile                                       ===        81
+quiz                                         ===        80
+pp                                           ===        77
+boxdata                                      ===        76
+filehandle                                   ===        69
+celllabel                                    ===        67
+album                                        ===        60
+rowbox                                       ===        55
+pubstate                                     ===        50
+tppubtype                                    ===        50
+vahid                                        ===        45
+reservations                                 ===        40
+gosub                                        ===        39
+closehttps                                   ===        38
+reservation                                  ===        35
+mjcarey                                      ===        33
+bedrooms                                     ===        33
+stnt                                         ===        33
+crossref                                     ===        31
+tablename                                    ===        30
+port                                         ===        30
+alecture                                     ===        28
+fsa                                          ===        28
+testr                                        ===        27
+nb                                           ===        25
+nr                                           ===        25
+shivaj                                       ===        25
+automation                                   ===        24
+goto                                         ===        23
+synthesis                                    ===        22
+dependability                                ===        22
+os                                           ===        22
+waans                                        ===        22
+rmtest                                       ===        21
+niranjan                                     ===        21
+asst                                         ===        20
+superscriptbox                               ===        20
+multilinefunction                            ===        20
+sdcl                                         ===        20
+uddin                                        ===        20
+callegaro                                    ===        20
+wp                                           ===        20
+departing                                    ===        20
+shooter                                      ===        20
+var                                          ===        19
+def                                          ===        19
+bedroom                                      ===        19
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+ics.uci.edu SubDomains and their frequency
+--------------------------------------------------------------------------------
+http://asterix.ics.uci.edu, 6
+http://cbcl.ics.uci.edu, 1
+http://cert.ics.uci.edu, 1
+http://cml.ics.uci.edu, 1
+http://computableplant.ics.uci.edu, 1
+http://dynamo.ics.uci.edu, 1
+http://emj.ics.uci.edu, 2
+http://flamingo.ics.uci.edu, 10
+http://fr.ics.uci.edu, 4
+http://futurehealth.ics.uci.edu, 4
+http://hana.ics.uci.edu, 1
+http://ipubmed.ics.uci.edu, 1
+http://isg.ics.uci.edu, 2
+http://mcs.ics.uci.edu, 1
+http://mhcid.ics.uci.edu, 2
+http://motifmap.ics.uci.edu, 2
+http://ngs.ics.uci.edu, 1
+http://sdcl.ics.uci.edu, 1
+http://sherlock.ics.uci.edu, 4
+http://sli.ics.uci.edu, 1
+http://sprout.ics.uci.edu, 1
+http://tastier.ics.uci.edu, 1
+http://www-db.ics.uci.edu, 4
+https://archive.ics.uci.edu, 1
+https://cbcl.ics.uci.edu, 3
+https://chenli.ics.uci.edu, 6
+https://cml.ics.uci.edu, 1
+https://cyberclub.ics.uci.edu, 3
+https://emj.ics.uci.edu, 4
+https://grape.ics.uci.edu, 22
+https://iasl.ics.uci.edu, 4
+https://isg.ics.uci.edu, 39
+https://mailman.ics.uci.edu, 1
+https://mcs.ics.uci.edu, 2
+https://mhcid.ics.uci.edu, 7
+https://mse.ics.uci.edu, 3
+https://mswe.ics.uci.edu, 11
+https://ngs.ics.uci.edu, 510
+https://wics.ics.uci.edu, 86
+
+
